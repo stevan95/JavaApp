@@ -4,7 +4,6 @@ pipeline {
     
     environment {
         IMAGE = 'java-app'
-        BUILD_TAG = ${env.BUILD_ID}
     }
 
     stages {
@@ -26,8 +25,8 @@ pipeline {
               withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
                        docker login -u $USERNAME -p $PASSWORD   
-                       docker tag $IMAGE mstiv95/$IMAGE:$BUILD_TAG
-                       docker push mstiv95/$IMAGE:$BUILD_TAG
+                       docker tag $IMAGE mstiv95/$IMAGE:${env.BUILD_NUMBER}
+                       docker push mstiv95/$IMAGE:${env.BUILD_NUMBER}
                     '''
                  }
             }
