@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: "mstiv95/java-app:$BUILD_TAG"
+    image: "java-app"
     build:
       context: .
       dockerfile: Dockerfile-Java
