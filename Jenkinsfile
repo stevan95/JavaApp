@@ -4,7 +4,7 @@ pipeline {
     
     environment {
         IMAGE = 'java-app'
-        BUILD_TAG = env.BUILD_ID
+        BUILD_TAG = 'env.BUILD_ID'
     }
 
     stages {
