@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-              sh ' ./Jenkins/test/mvn.sh mvn test'
+              sh ' ./jenkins/test/mvn.sh mvn test'
             }
         }
     }
