@@ -25,7 +25,7 @@ pipeline {
             steps {
               withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                       docker login -u $USERNAME -p PASSWORD   
+                       docker login -u $USERNAME -p $PASSWORD   
                        docker tag $IMAGE:$BUILD_TAG mstiv95/$IMAGE:$BUILD_TAG
                        docker push mstiv95/$IMAGE:$BUILD_TAG
                     '''
