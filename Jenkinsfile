@@ -26,9 +26,9 @@ pipeline {
             steps {
               withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                       ssh $PRODUCTION "docker login -u $USERNAME -p $PASSWORD;   
-                       docker tag $IMAGE mstiv95/$IMAGE:$BUILDVERSION;
-                       docker push mstiv95/$IMAGE:$BUILDVERSION;"
+                       docker login -u $USERNAME -p $PASSWORD  
+                       docker tag $IMAGE mstiv95/$IMAGE:$BUILDVERSION
+                       docker push mstiv95/$IMAGE:$BUILDVERSION
                     '''
                  }
             }
@@ -37,9 +37,7 @@ pipeline {
             steps {
               withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                       ssh root@10.0.2.6
-                       docker login -u $USERNAME -p $PASSWORD
-                       docker run -d mstiv95/$IMAGE:$BUILDVERSION
+                       ssh $PRODUCTION "docker login -u $USERNAME -p $PASSWORD; docker run -d mstiv95/$IMAGE:$BUILDVERSION"
                     '''
               }     
             }
